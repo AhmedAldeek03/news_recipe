@@ -72,6 +72,19 @@ The recipe also applies the core **Tags** and **Content editor role** recipes.
 
 ## Installation
 
+Seeds projects (`sprintive/seeds-project`) don't install recipes into `recipes/` yet. Their
+`composer/installers` 1.x doesn't know the `drupal-recipe` package type, so add it once to the
+project's `composer.json`, under `extra`:
+
+```json
+"installer-types": ["npm-asset", "drupal-recipe"],
+"installer-paths": {
+    "recipes/{$name}": ["type:drupal-recipe"]
+}
+```
+
+Keep the other `installer-paths` entries. Then:
+
 ```bash
 composer config repositories.news_recipe '{"type":"vcs","url":"https://github.com/AhmedAldeek03/news_recipe","no-api":true}'
 composer require drupal/news_recipe:1.0.x-dev
