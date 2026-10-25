@@ -1,0 +1,72 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news.field_body
+    - field.field.node.news.field_date
+    - field.field.node.news.field_media
+    - field.field.node.news.field_media_1
+    - field.field.node.news.field_meta_tags
+    - field.field.node.news.field_page_url
+    - field.field.node.news.field_real_time_seo
+    - field.field.node.news.field_term
+    - image.style.wide
+    - node.type.news
+  module:
+    - datetime
+    - media
+    - text
+id: node.news.default
+targetEntityType: node
+bundle: news
+mode: default
+content:
+  field_media:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: wide
+      image_loading:
+        attribute: eager
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_date:
+    type: datetime_custom
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: 'j F Y'
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_media_1:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_term:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  field_meta_tags: true
+  field_page_url: true
+  field_real_time_seo: true
+  links: true

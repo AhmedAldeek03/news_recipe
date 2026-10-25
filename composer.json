@@ -1,0 +1,16 @@
+{
+    "name": "drupal/news_recipe",
+    "description": "Adds a News content type with Seeds fields, a tabbed edit form, URL aliases, a listing page, a Latest news block and one sample article.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.1",
+        "drupal/field_group": "^3.6 || ^4",
+        "drupal/length_indicator": "^1.4",
+        "drupal/media_library_edit": "^3.0",
+        "drupal/metatag": "^2.2",
+        "drupal/pathauto": "^1.12",
+        "drupal/tagify": "^2.0",
+        "drupal/yoast_seo": "^2.2"
+    }
+}

@@ -1,0 +1,34 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 45a17798-c35e-4f72-b520-64c5fb4c5a0d
+  bundle: news
+  default_langcode: en
+  depends:
+    8dfe92f3-6139-41e5-bfb8-a3294ba45d6e: media
+    1c5f386c-1c3b-4428-876c-ec354cdf30c4: taxonomy_term
+    34bf21f1-3567-4bd3-8dc3-bd6b513b6c6a: taxonomy_term
+default:
+  status:
+  - value: true
+  title:
+  - value: Welcome to our news section
+  promote:
+  - value: false
+  sticky:
+  - value: false
+  revision_translation_affected:
+  - value: true
+  field_body:
+  - value: '<p>This is a sample news article created by the News recipe. It shows every part of a news item: the image at the top, the date, the article text, tags and the summary used on news cards.</p><h2>Add your own news</h2><p>Go to <strong>Content &gt; Add content &gt; News</strong>. Fill in the <strong>Basic Information</strong> tab, then add an image in the <strong>Media</strong> tab. The page address is built from the <strong>Page URL</strong> field.</p><p>When you are ready, edit or delete this article.</p>'
+    format: basic_editor
+    summary: This sample article shows how news looks on the site. Edit it or delete it when you add your own.
+  field_date:
+  - value: '2026-10-25'
+  field_media:
+  - entity: 8dfe92f3-6139-41e5-bfb8-a3294ba45d6e
+  field_page_url:
+  - value: sample-news-article
+  field_term:
+  - entity: 1c5f386c-1c3b-4428-876c-ec354cdf30c4
+  - entity: 34bf21f1-3567-4bd3-8dc3-bd6b513b6c6a

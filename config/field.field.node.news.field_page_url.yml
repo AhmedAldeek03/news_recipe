@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_page_url
+    - node.type.news
+id: node.news.field_page_url
+field_name: field_page_url
+entity_type: node
+bundle: news
+label: 'Page URL'
+description: 'The last part of the page address, for example <em>annual-report-2026</em>. Use English letters, numbers and hyphens.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,101 @@
+name: 'News'
+description: 'Adds a News content type with Seeds fields, a tabbed edit form, URL aliases, a listing page, a Latest news block and one sample article.'
+type: 'Content type'
+
+# Other recipes this one builds on. Each is applied first, once.
+recipes:
+  - core/recipes/tags_taxonomy
+  - core/recipes/content_editor_role
+
+# Modules to turn on. Already enabled modules are skipped.
+install:
+  - datetime
+  - field_group
+  - length_indicator
+  - media_library
+  - media_library_edit
+  - metatag
+  - node
+  - path
+  - pathauto
+  - tagify
+  - taxonomy
+  - text
+  - views
+  - yoast_seo
+
+# Values asked for when the recipe is applied. Drush prompts for them,
+# Project Browser uses the default, and `--input=news_recipe.url_prefix=...`
+# sets them without a prompt.
+input:
+  url_prefix:
+    data_type: string
+    description: 'The path that news pages and the news listing start with.'
+    constraints:
+      NotBlank: []
+      Regex:
+        pattern: '/^[a-z0-9-]+$/'
+        message: 'Use lowercase letters, numbers and hyphens only, for example "news" or "media-center".'
+    prompt:
+      method: ask
+      arguments:
+        question: 'URL prefix for news pages (for example "news")?'
+    default:
+      source: value
+      value: news
+
+config:
+  # Field storages shape the database, so an existing one must match exactly.
+  strict:
+    - field.storage.node.field_body
+    - field.storage.node.field_date
+    - field.storage.node.field_media
+    - field.storage.node.field_media_1
+    - field.storage.node.field_meta_tags
+    - field.storage.node.field_page_url
+    - field.storage.node.field_real_time_seo
+    - field.storage.node.field_term
+  # Config shipped by modules that this recipe's own config depends on.
+  import:
+    node:
+      - core.entity_view_mode.node.teaser
+    image:
+      - image.style.medium
+      - image.style.wide
+  actions:
+    # URL aliases: /news/[page url]. Uses the url_prefix input.
+    pathauto.pattern.news:
+      createIfNotExists:
+        label: 'News'
+        type: 'canonical_entities:node'
+        pattern: '/${url_prefix}/[node:field_page_url]'
+        selection_criteria:
+          9bb6d7a4-29c9-4d7c-964a-9cb96b693062:
+            id: 'entity_bundle:node'
+            negate: false
+            context_mapping:
+              node: node
+            bundles:
+              news: news
+        selection_logic: and
+        weight: -5
+        relationships: {  }
+    # The listing page follows the same prefix: /news.
+    views.view.news:
+      setProperties:
+        display.page_news.display_options.path: '${url_prefix}'
+    # Editors can manage news and use the only text format the body allows.
+    user.role.content_editor:
+      grantPermissions:
+        - 'create news content'
+        - 'edit own news content'
+        - 'edit any news content'
+        - 'delete own news content'
+        - 'delete any news content'
+        - 'view news revisions'
+        - 'revert news revisions'
+        - 'use text format basic_editor'
+        - 'access media overview'
+        - 'create image media'
+        - 'create file media'
+        - 'create terms in tags'

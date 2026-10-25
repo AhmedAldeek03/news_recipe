@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_body
+    - filter.format.basic_editor
+    - node.type.news
+  module:
+    - text
+id: node.news.field_body
+field_name: field_body
+entity_type: node
+bundle: news
+label: Body
+description: 'The summary is shown on news cards and in search results. Keep it to one or two sentences.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats:
+    - basic_editor
+field_type: text_with_summary

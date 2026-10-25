@@ -1,0 +1,16 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 3903b9c3-69c0-4d0b-8bbe-43a52453b4f7
+  default_langcode: en
+default:
+  filename:
+  - value: news-sample.jpg
+  uri:
+  - value: public://news/news-sample.jpg
+  filemime:
+  - value: image/jpeg
+  filesize:
+  - value: 40710
+  status:
+  - value: true
